@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    >
+
+    <!-- App Background Color -->
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="#EDEDEE" />
+    </Style>
+
+    <!-- Label Fonts Bold -->
+    <OnPlatform x:TypeArguments="x:String" x:Key="FontBold">
+        <On Platform="Android" Value="Lexend-SemiBold.ttf#Font" />
+        <On Platform="iOS" Value="Lexend-SemiBold" />
+    </OnPlatform>
+
+    <!-- Label Fonts -->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="Lexend-Regular.ttf#Font" />
+                    <On Platform="iOS" Value="Lexend-Regular" />
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Entry Fonts -->
+    <Style TargetType="Entry">
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="Lexend-Regular.ttf#Font" />
+                    <On Platform="iOS" Value="Lexend-Regular" />
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Picker Fonts -->
+    <Style TargetType="Picker">
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="Lexend-Regular.ttf#Font" />
+                    <On Platform="iOS" Value="Lexend-Regular" />
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DivisionLine -->
+    <Style x:Key="DivisionLine" TargetType="Line">
+        <Setter Property="TranslationY"      Value="{d:OnPlatform Android='20', iOS='20'}"/>
+        <Setter Property="VerticalOptions"   Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="StrokeDashArray"   Value="1,2"/>
+        <Setter Property="X2"                Value="320"/>
+        <Setter Property="StrokeLineCap"     Value="Square"/>
+        <Setter Property="Stroke"            Value="Silver"/>
+        <Setter Property="StrokeThickness"   Value="2"/>
+    </Style>
+
+</ResourceDictionary>

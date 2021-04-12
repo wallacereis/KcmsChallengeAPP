@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             x:Class="KcmsChallengeAPP.Views.ListarCategoriasView"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:ListarCategoriasViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,400,*" RowSpacing="5" Padding="5,5" Margin="0">
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="128"
+                BackgroundColor="Transparent"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,10"
+                Grid.Row="0"
+            />
+            <Label 
+                Text="Lista de Categorias"
+                TextColor="Black"
+                FontSize="17"
+                Margin="5,0"
+                Grid.Row="1"
+            />
+            <Frame CornerRadius="10" BackgroundColor="White" Padding="5" Margin="0" Grid.Row="2">
+                <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefresh, Mode=TwoWay}">
+                    <CollectionView 
+                        x:Name="listViewCategorias" 
+                        ItemsSource="{Binding Categorias}" 
+                        SelectionChanged="OnSelectionChanged"
+                        SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference listViewCategorias}}"
+                        SelectionMode="Single"
+                        VerticalScrollBarVisibility="Default"
+                    >
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView Padding="5">
+                                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="250,*" RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
+                                        <Label 
+                                            FontSize="17"
+                                            Text="{Binding Descricao}" 
+                                            TextColor="Black"
+                                            Margin="0,5,0,5"
+                                            HorizontalOptions="FillAndExpand"
+                                            Grid.Row="0" Grid.Column="0"
+                                        />
+                                        <Label 
+                                            Text="{x:Static fontawesome:FontAwesomeIcons.AngleDoubleRight}"
+                                            TextColor="#2384C6"
+                                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                                            FontSize="16"
+                                            HorizontalOptions="EndAndExpand"
+                                            Margin="0,10,10,5"
+                                            IsVisible="{Binding Ativo}"
+                                            Grid.Row="0" Grid.Column="1"
+                                        />
+                                        <BoxView WidthRequest="100" HeightRequest="1" BackgroundColor="#660672" Grid.Row="1" Grid.ColumnSpan="2" />
+                                    </Grid>
+                                </ContentView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </Frame>
+            <!-- bottom controls -->
+            <Button 
+                x:Name="btnVoltar"
+                HeightRequest="50"
+                WidthRequest="150"
+                TextColor="White"
+                Text="Voltar" 
+                Command="{Binding VoltarCommand}" 
+                CornerRadius="10" 
+                BackgroundColor="#EF4030" 
+                Padding="0"
+                Margin="10,0"
+                VerticalOptions="End"
+                Grid.Row="3"
+            />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:fontawesome="clr-namespace:FontAwesome" 
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             mc:Ignorable="d"
+             x:Class="KcmsChallengeAPP.Views.SemConexaoView"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:SemConexaoViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="120,120,*" RowSpacing="0" Margin="0" Padding="0">
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="128"
+                HorizontalOptions="Center"
+                Margin="0"
+                Grid.Row="0"
+            />
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand" 
+                Padding="0" 
+                Margin="0"
+                Grid.Row="1"
+            >
+                <!-- middle controls -->
+                <Label 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Wifi}"
+                    TextColor="White"
+                    FontFamily="{StaticResource FontAwesomeSolid}" 
+                    FontSize="144"
+                    Margin="0,20"
+                    HorizontalTextAlignment="Center"
+                />
+                <Label 
+                    FontSize="16"
+                    Text="SEM CONEXÃO COM A INTERNET..."
+                    TextColor="Black"                    
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                />
+                <Label 
+                    FontSize="16"
+                    Text="POR FAVOR, VERIFIQUE SUA CONEXÃO E TENTE NOVAMENTE."
+                    TextColor="Black"                    
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                />
+            </StackLayout>
+            <!-- bottom controls -->
+            <Grid Grid.Row="2" RowDefinitions="*" RowSpacing="0" ColumnSpacing="0" VerticalOptions="End" BackgroundColor="#EF4030" Padding="0" Margin="0">
+                <Label Text="TENTAR NOVAMENTE" Grid.Row="0" Margin="0,15" HorizontalOptions="CenterAndExpand" TextColor="White" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TentarNovamenteCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

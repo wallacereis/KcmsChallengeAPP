@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             x:Class="KcmsChallengeAPP.Views.ListarProdutosView"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:ListarProdutosViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,400,*" RowSpacing="5" Padding="5,5" Margin="0">
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="128"
+                BackgroundColor="Transparent"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,10"
+                Grid.Row="0"
+            />
+            <Label 
+                Text="{Binding DescricaoCategoria}"
+                TextColor="Black"
+                FontSize="17"
+                Margin="5,0"
+                Grid.Row="1"
+            />
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefresh, Mode=TwoWay}" Grid.Row="2">
+                <CollectionView 
+                    x:Name="listViewProdutos" 
+                    ItemsSource="{Binding Produtos}" 
+                    SelectionChanged="OnSelectionChanged"
+                    SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference listViewProdutos}}"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Default"
+                >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="0" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView Padding="5">
+                                <Frame CornerRadius="10" BackgroundColor="White" Padding="0" Margin="0">
+                                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,*" RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
+                                        <Image 
+                                            Aspect="AspectFill"
+                                            WidthRequest="70"   
+                                            HeightRequest="70"
+                                            BackgroundColor="Transparent"
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="Center"
+                                            Margin="5"
+                                            Grid.RowSpan="2" Grid.Column="0"
+                                        >
+                                            <Image.Clip>
+                                                <EllipseGeometry
+                                                    Center="35,35"
+                                                    RadiusX="35"
+                                                    RadiusY="35"/>
+                                            </Image.Clip>
+                                            <Image.Source>
+                                                <FileImageSource File="{Binding ImagemURL}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <Label 
+                                            FontSize="17"
+                                            Text="{Binding StrDescricao}" 
+                                            TextColor="Black"
+                                            FontFamily="{StaticResource FontBold}"
+                                            Margin="5,10,0,5"
+                                            HorizontalOptions="FillAndExpand"
+                                            Grid.Row="0" Grid.Column="1"
+                                        />
+                                        <Label 
+                                            FontSize="17"
+                                            Text="{Binding PrecoPromocional,StringFormat='{0:C}'}" 
+                                            FontFamily="{StaticResource FontBold}"
+                                            TextColor="Black"
+                                            Margin="0,10,10,0"
+                                            HorizontalOptions="EndAndExpand"
+                                             Grid.Row="0" Grid.Column="2"
+                                        />
+                                        <Label 
+                                            FontSize="16"
+                                            Text="{Binding StrDetalhes}" 
+                                            TextColor="Black"
+                                            Margin="85,0,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            Grid.Row="1" Grid.ColumnSpan="3"
+                                        />
+                                        <BoxView WidthRequest="100" HeightRequest="1" BackgroundColor="#2384C6" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,5" />
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <!-- bottom controls -->
+            <Button 
+                x:Name="btnVoltar"
+                HeightRequest="50"
+                WidthRequest="150"
+                TextColor="White"
+                Text="Voltar" 
+                Command="{Binding VoltarCommand}" 
+                CornerRadius="10" 
+                BackgroundColor="#EF4030" 
+                Padding="0"
+                Margin="10,0"
+                VerticalOptions="End"
+                Grid.Row="3"
+            />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

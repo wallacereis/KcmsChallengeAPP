@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             x:Class="KcmsChallengeAPP.Views.LoginView">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto,*" RowSpacing="20" ColumnSpacing="0" Padding="0" Margin="0" >
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="256"
+                BackgroundColor="Transparent"
+                HorizontalOptions="CenterAndExpand"
+                Grid.Row="0"
+                Margin="0,20"
+            />
+            <StackLayout Padding="15,0" Grid.Row="1">
+                <Entry
+                    x:Name="txtEmail"
+                    Keyboard="Email"
+                    HeightRequest="40"
+                    Placeholder="E-mail"
+                    PlaceholderColor="Black"
+                    TextColor="Black"
+                    FontSize="18"
+                    Text="{Binding UsuarioModel.Email}"
+                />
+                <Entry
+                    x:Name="txtSenha"
+                    Keyboard="Default"
+                    HeightRequest="40"
+                    Placeholder="Senha"
+                    PlaceholderColor="Black"
+                    TextColor="Black"
+                    IsPassword="True"
+                    FontSize="18"
+                    Text="{Binding UsuarioModel.Senha}"
+                />
+                <!-- middle controls -->
+                <Button 
+                    x:Name="btnLogin"
+                    HeightRequest="50"
+                    WidthRequest="150"
+                    TextColor="White"
+                    Text="Login" 
+                    Command="{Binding LoginCommand}" 
+                    CornerRadius="10" 
+                    BackgroundColor="#EF4030" 
+                    Padding="30,0"
+                    Margin="0,30,0,0"
+                />
+            </StackLayout>
+            <Label 
+                x:Name="lblVersionNumber"
+                FontSize="Small"
+                Text="Versão atual" 
+                TextColor="Black"
+                Margin="0,10"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="End"
+                Grid.Row="2"
+            />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

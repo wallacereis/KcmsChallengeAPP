@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             mc:Ignorable="d"
+             x:Class="KcmsChallengeAPP.Views.MensagemView"    
+             Shell.NavBarIsVisible="False"
+             Shell.PresentationMode="ModalAnimated">
+    <ContentPage.BindingContext>
+        <viewModels:MensagemViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,450,*" RowSpacing="0" Padding="10,0">
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="128"
+                BackgroundColor="Transparent"
+                HorizontalOptions="CenterAndExpand"
+                Margin="0,10"
+                Grid.Row="0"
+            />
+            <!-- middle cntrols -->
+            <Frame
+                BackgroundColor="White"
+                CornerRadius="10"
+                Padding="10"
+                Margin="0"
+                Grid.Row="1">
+                <StackLayout Padding="0,70">
+                    <Image 
+                        Source="checked"
+                        Aspect="AspectFit"
+                        WidthRequest="128"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0,5,0,5"
+                    />
+                    <Label 
+                        FontSize="Large"
+                        Text="{Binding Mensagem}"
+                        TextColor="Black"                    
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="CenterAndExpand"
+                    />
+                </StackLayout>
+            </Frame>
+            <!-- bottom controls -->
+            <Button 
+                x:Name="btnFecharr"
+                HeightRequest="50"
+                WidthRequest="150"
+                TextColor="White"
+                Text="Fechar" 
+                Command="{Binding FinalizarCommand}" 
+                CornerRadius="10" 
+                BackgroundColor="#EF4030" 
+                Padding="30,0"
+                Margin="0,5,0,10"
+                VerticalOptions="End"
+                Grid.Row="2"
+            />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

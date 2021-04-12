@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:util="clr-namespace:KcmsChallengeAPP.Converters"
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels" 
+             x:Class="KcmsChallengeAPP.Views.RegistrarProdutoView"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:RegistrarProdutoViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <util:CurrencyConverter x:Key="currencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,Auto,270,*" RowSpacing="0" Padding="5,5" Margin="0">
+                <!-- top controls -->
+                <Image 
+                    Source="logo"
+                    Aspect="AspectFit"
+                    WidthRequest="128"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0"
+                    Grid.Row="0"
+                />
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,0" Grid.Row="1">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        x:Name="txtDescricao"
+                        Keyboard="Text"
+                        WidthRequest="150"
+                        HeightRequest="40"
+                        Placeholder="Descrição do Produto"
+                        PlaceholderColor="Black"
+                        TextColor="Black"
+                        FontSize="16"
+                        MaxLength="150"
+                        Text="{Binding ProdutoModel.Descricao}"
+                        HorizontalOptions="FillAndExpand"
+                    />
+                    <Entry
+                        BackgroundColor="Transparent"
+                        x:Name="txtDetalhes"
+                        Keyboard="Text"
+                        WidthRequest="150"
+                        HeightRequest="40"
+                        Placeholder="Detalhes do Produto"
+                        PlaceholderColor="Black"
+                        TextColor="Black"
+                        FontSize="16"
+                        MaxLength="300"
+                        Text="{Binding ProdutoModel.Detalhes}"
+                        HorizontalOptions="FillAndExpand"
+                    />
+                    <Picker
+                        x:Name="pickerCategorias"
+                        BackgroundColor="Transparent"
+                        Title="Selecione a Categoria"
+                        ItemsSource="{Binding Categorias}"
+                        ItemDisplayBinding="{Binding Descricao}"
+                        SelectedIndexChanged="OnSelectedIndexChanged"                    
+                        Margin="0"
+                    />
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*" ColumnSpacing="0" RowSpacing="0" Padding="0" Margin="0">
+                        <Label 
+                            Text="Preço (R$)"
+                            FontSize="15"
+                            TextColor="Black"
+                            Margin="5,0"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                        />
+                        <Entry
+                            BackgroundColor="Transparent"
+                            x:Name="txtPreco"
+                            Keyboard="Numeric"
+                            WidthRequest="150"
+                            HeightRequest="40"
+                            Placeholder="Preço (R$)"
+                            PlaceholderColor="Black"
+                            TextColor="Black"
+                            FontSize="16"
+                            Text="{Binding Preco, Converter={StaticResource currencyConverter}}"
+                            HorizontalOptions="StartAndExpand"
+                            Grid.Row="1" 
+                            Grid.Column="0"
+                        />
+                        <Label 
+                            Text="Promocional (R$)"
+                            FontSize="15"
+                            TextColor="Black"
+                            Margin="15,0"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                        />
+                        <Entry
+                            BackgroundColor="Transparent"
+                            x:Name="txtPrecoPromocional"
+                            Keyboard="Numeric"
+                            WidthRequest="150"                        
+                            HeightRequest="40"
+                            Placeholder="Preço Promocional(R$)"
+                            PlaceholderColor="Black"
+                            TextColor="Black"
+                            FontSize="16"
+                            Text="{Binding PrecoPromocional, Converter={StaticResource currencyConverter}}"
+                            HorizontalOptions="EndAndExpand"
+                            Grid.Row="1"
+                            Grid.Column="1" 
+                        />
+                    </Grid>
+                </StackLayout>
+                <Label 
+                    FontSize="16" 
+                    TextColor="Black" 
+                    Text="Imagem do Produto:"
+                    HorizontalTextAlignment="Center"
+                    Margin="0"
+                    Grid.Row="2"
+                />
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="10"
+                    Margin="10,5"
+                    VerticalOptions="FillAndExpand"
+                    Grid.Row="3"
+                    >
+                    <Image 
+                        x:Name="FileImage"
+                        Aspect="AspectFill"
+                        Source="{Binding ImageSource}"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="FillAndExpand"
+                        Margin="0"
+                    />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <!-- bottom controls -->
+                <Button 
+                    x:Name="btnConfirmar"
+                    HeightRequest="50"
+                    WidthRequest="150"
+                    TextColor="White"
+                    Text="Confirmar" 
+                    Command="{Binding ConfirmarCommand}" 
+                    CornerRadius="10" 
+                    BackgroundColor="#EF4030" 
+                    Padding="0"
+                    Margin="10,0"
+                    VerticalOptions="End"
+                    Grid.Row="4"
+                />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

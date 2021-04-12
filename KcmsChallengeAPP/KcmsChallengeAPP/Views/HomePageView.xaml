@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:viewModels="clr-namespace:KcmsChallengeAPP.ViewModels"
+             x:Class="KcmsChallengeAPP.Views.HomePageView"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewModels:HomePageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowSpacing="20" RowDefinitions="Auto,Auto,Auto" Padding="0" Margin="10"  >
+            <!-- top controls -->
+            <Image 
+                Source="logo"
+                Aspect="AspectFit"
+                WidthRequest="256"
+                BackgroundColor="Transparent"
+                HorizontalOptions="CenterAndExpand"
+                Grid.Row="0"
+                Margin="0"
+            />
+            <!-- middle controls -->
+            <Grid RowDefinitions="130,130,130" ColumnDefinitions="150,150" RowSpacing="20" ColumnSpacing="20" Padding="0" Margin="10,0" Grid.Row="1"  >
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="10" Margin="0" BorderColor="#EF4030" Grid.Row="0" Grid.Column="0" >
+                    <StackLayout Padding="0">
+                        <Label 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.ClipboardCheck}"
+                            TextColor="#2384C6"
+                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Margin="0,10"
+                            />
+                        <Label 
+                            Text="Registrar &#10; Categorias"
+                            TextColor="Black"
+                            FontFamily="{StaticResource FontBold}" 
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Margin="0"
+                            />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegistrarCategoriaCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="10" Margin="0" BorderColor="#EF4030" Grid.Row="0" Grid.Column="1" >
+                    <StackLayout Padding="0">
+                        <Label 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.CashRegister}"
+                            TextColor="#2384C6"
+                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Margin="0"
+                            />
+                        <Label 
+                            Text="Registrar &#10; Produtos"
+                            TextColor="Black"
+                            FontFamily="{StaticResource FontBold}" 
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,10"
+                            />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegistrarProdutoCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="10" Margin="0" BorderColor="#EF4030" Grid.Row="1" Grid.Column="0" >
+                    <StackLayout Padding="0">
+                        <Label 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.ClipboardList}"
+                            TextColor="#2384C6"
+                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Margin="0"
+                            />
+                        <Label 
+                            Text="Listar &#10; Categorias"
+                            TextColor="Black"
+                            FontFamily="{StaticResource FontBold}" 
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,10"
+                            />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListarCategoriaCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="10" Margin="0" BorderColor="#EF4030" Grid.Row="1" Grid.Column="1" >
+                    <StackLayout Padding="0">
+                        <Label 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Headset}"
+                            TextColor="#2384C6"
+                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Margin="0"
+                            />
+                        <Label 
+                            Text="Fale &#10; Conosco"
+                            TextColor="Black"
+                            FontFamily="{StaticResource FontBold}" 
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,10"
+                            />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding FaleConoscoCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="10" Margin="0" BorderColor="#EF4030" Grid.Row="2" Grid.Column="0" >
+                    <StackLayout Padding="0">
+                        <Label 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.SignOutAlt}"
+                            TextColor="#2384C6"
+                            FontFamily="{StaticResource FontAwesomeSolid}" 
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Margin="0"
+                            />
+                        <Label 
+                            Text="Retornar &#10; Login"
+                            TextColor="Black"
+                            FontFamily="{StaticResource FontBold}" 
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,10"
+                            />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
